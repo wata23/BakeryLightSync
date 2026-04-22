@@ -1,76 +1,140 @@
-# VPM Package Template
+# Bakery Light Sync Window
 
-Starter for making Packages, including automation for building and publishing them.
+Unity の `Light` コンポーネントを一覧表示し、対応する Bakery ライトコンポーネントを追加・削除・確認できる Unity Editor 拡張です。
 
-Once you're all set up, you'll be able to push changes to this repository and have .zip and .unitypackage versions automatically generated, and a listing made which works in the VPM for delivering updates for this package. If you want to make a listing with a variety of packages, check out our [template-package-listing](https://github.com/vrchat-community/template-package-listing) repo.
+手動で Bakery 用コンポーネントを探して付けたり、設定を見比べたりする手間を減らすことを目的としています。  
+特に、**Bakery 導入後の Light セットアップ補助** と **Unity Light と Bakery Light の対応確認** をしやすくするためのツールです。
 
-## ▶ Getting Started
+主な機能:
 
-* Press [![Use This Template](https://user-images.githubusercontent.com/737888/185467681-e5fdb099-d99f-454b-8d9e-0760e5a6e588.png)](https://github.com/vrchat-community/template-package/generate)
-to start a new GitHub project based on this template.
-  * Choose a fitting repository name and description.
-  * Set the visibility to 'Public'. You can also choose 'Private' and change it later.
-  * You don't need to select 'Include all branches.'
-* Clone this repository locally using Git.
-  * If you're unfamiliar with Git and GitHub, [visit GitHub's documentation](https://docs.github.com/en/get-started/quickstart/git-and-github-learning-resources) to learn more.
-* Add the folder to Unity Hub and open it as a Unity Project.
-* After opening the project, wait while the VPM resolver is downloaded and added to your project.
-  * This gives you access to the VPM Package Maker and Package Resolver tools.
+- Scene 内の Light を一覧表示
+- 対応する Bakery コンポーネントの追加・削除
+- Unity Light と Bakery コンポーネントの主要パラメータ比較
+- 一括追加 / 一括削除
+- ライトモードの確認と変更
+- Realtime Light に Bakery コンポーネントを追加する際の挙動設定
+- 日本語 / 英語 UI 切り替え
 
-## 🚇 Migrating Assets Package
-Full details at [Converting Assets to a VPM Package](https://vcc.docs.vrchat.com/guides/convert-unitypackage)
+対応関係:
 
-## ✏️ Working on Your Package
+- `Point Light` → `BakeryPointLight`
+- `Spot Light` → `BakeryPointLight`
+- `Directional Light` → `BakeryDirectLight`
+- `Area Light` → `BakeryLightMesh`
 
-* Delete the "Packages/com.vrchat.demo-template" directory or reuse it for your own package.
-  * If you reuse the package, don't forget to rename it and add generated meta files to your repository!
-* Update the `.gitignore` file in the "Packages" directory to include your package.
-  * For example, change `!com.vrchat.demo-template` to `!com.username.package-name`.
-  * `.gitignore` files normally *exclude* the contents of your "Packages" directory. This `.gitignore` in this template show how to *include* the demo package. You can easily change this out for your own package name.
-* Open the Unity project and work on your package's files in your favorite code editor.
-* When you're ready, commit and push your changes.
-* Once you've set up the automation as described below, you can easily publish new versions.
+---
 
-## 🤖 Setting up the Automation
+## 想定環境
 
-Create a repository variable with the name and value described below.
-For details on how to create repository variables, see [Creating Configuration Variables for a Repository](https://docs.github.com/en/actions/learn-github-actions/variables#creating-configuration-variables-for-a-repository).
-Make sure you are creating a **repository variable**, and not a **repository secret**.
+- VRChatに対応した、Unityバージョン(Unity 2022.3.22f1)
+- Bakery GPU Lightmapper(ツール作成時ver1.98)
+- VRChat Creator Companion（VCC）または ALCOM
 
-* `PACKAGE_NAME`: the name of your package, like `com.vrchat.demo-template`.
+---
 
-Finally, go to the "Settings" page for your repo, then choose "Pages", and look for the heading "Build and deployment". Change the "Source" dropdown from "Deploy from a branch" to "GitHub Actions".
+## インストール方法
 
-That's it!
-Some other notes:
-* We highly recommend you keep the existing folder structure of this template.
-  * The root of the project should be a Unity project.
-  * Your packages should be in the "Packages" directory.
-  * If you deviate from this folder structure, you'll need to update the paths that assume your package is in the "Packages" directory on lines 24, 38, 41 and 57.
-* If you want to store and generate your web files in a folder other than "Website" in the root, you can change the `listPublicDirectory` item [here in build-listing.yml](.github/workflows/build-listing.yml#L17).
+### VCC の VPM から導入する方法(推奨）
 
-## 🎉 Publishing a Release
+1. VCC にこのパッケージの VPM リポジトリを追加します。  
+   例:
 
-You can make a release by running the [Build Release](.github/workflows/release.yml) action. The version specified in your `package.json` file will be used to define the version of the release.
+```text
+<現在作成中につき、少しお待ちください>
+```
 
-## 📃 Rebuilding the Listing
+2. VCC で対象プロジェクトを開きます。
+3. `Manage Project` から本ツールを追加します。
+4. Unity を開き、メニューから以下を実行します。
 
-Whenever you make a change to a release - manually publishing it, or manually creating, editing or deleting a release, the [Build Repo Listing](.github/workflows/build-listing.yml) action will make a new index of all the releases available, and publish them as a website hosted fore free on [GitHub Pages](https://pages.github.com/). This listing can be used by the VPM to keep your package up to date, and the generated index page can serve as a simple landing page with info for your package. The URL for your package will be in the format `https://username.github.io/repo-name`.
+```text
+Tools > Bakery Light Sync
+```
 
-## 🏠 Customizing the Landing Page (Optional)
+### Release から Unity Package を導入する方法
 
-The action which rebuilds the listing also publishes a landing page. The source for this page is in `Website/index.html`. The automation system uses [Scriban](https://github.com/scriban/scriban) to fill in the objects like `{{ this }}` with information from the latest release's manifest, so it will stay up-to-date with the name, id and description that you provide there. You are welcome to modify this page however you want - just use the existing `{{ template.objects }}` to fill in that info wherever you like. The entire contents of your "Website" folder are published to your GitHub Page each time.
+1. GitHub の `Releases` から `.unitypackage` をダウンロードします。  
+   例:
 
-## 💻 Technical Stuff
+```text
+com.wata23.bakery-light-sync-0.1.0.unitypackage
+```
 
-You are welcome to make your own changes to the automation process to make it fit your needs, and you can create Pull Requests if you have some changes you think we should adopt. Here's some more info on the included automation:
+2. Unity で `.unitypackage` をインポートします。
+3. Unity を開き、メニューから以下を実行します。
 
-### Build Release Action
-[release.yml](/.github/workflows/release.yml)
+```text
+Tools > Bakery Light Sync
+```
 
-This is a composite action combining a variety of existing GitHub Actions and some shell commands to create both a .zip of your Package and a .unitypackage. It creates a release which is named for the `version` in the `package.json` file found in your target Package, and publishes the zip, the unitypackage and the package.json file to this release.
+---
 
-### Build Repo Listing
-[build-listing.yml](.github/workflows/build-listing.yml)
+## 使い方
 
-This is a composite action which builds a vpm-compatible [Repo Listing](https://vcc.docs.vrchat.com/vpm/repos) based on the releases you've created. In order to find all your releases and combine them into a listing, it checks out [another repository](https://github.com/vrchat-community/package-list-action) which has a [Nuke](https://nuke.build/) project which includes the VPM core lib to have access to its types and methods. This project will be expanded to include more functionality in the future - for now, the action just calls its `BuildRepoListing` target.
+### Light 一覧を確認する
+
+ウィンドウを開くと、現在開いている Scene 内の Unity `Light` が一覧表示されます。  
+同じ GameObject に対応する Bakery コンポーネントが存在する場合、その直下に Bakery 側の行も表示されます。
+
+表示項目の例:
+
+- Object
+- Component
+- Light Type
+- Light Mode
+- Enabled
+- Color
+- Intensity
+- Range / Cutoff
+- Spot Angle
+- Area Size
+- Cookie
+
+### Bakery コンポーネントを個別に追加 / 削除する
+
+各 Unity `Light` 行の左側にチェックボックスがあります。
+
+- **ON** → 対応する Bakery コンポーネントを追加
+- **OFF** → 同じ GameObject 上の対応する Bakery コンポーネントを削除
+
+### Bakery コンポーネントを一括で追加 / 削除する
+
+ウィンドウ上部のボタンから一括操作が可能です。
+
+- `Add Bakery Components To All...`
+- `Remove Bakery Components From All...`
+
+### ライトモードを確認 / 変更する
+
+**リスト上のライトモードの項目では**、`Realtime / Mixed / Baked` の状態を確認できます。  
+必要に応じて、リスト上から変更することもできます。
+
+### 設定を使う
+
+右上の **設定** から、Realtime Light に Bakery コンポーネントを追加する際の挙動を設定できます。
+
+例:
+
+- Realtime のまま追加
+- Mixed に変更してから追加
+- Baked に変更してから追加
+- 一括追加時のみ確認
+
+---
+
+## 注意点
+
+- **ベイクの実行自体はこのツールでは行いません。**
+- Bakeryがなくても動作するように作っていますが、インポートされない限りは何もできません。
+- パラメータをコピーする方法をとっているため、Bakery のバージョンによっては機能しない場合があります。
+- `Area Light` は `BakeryLightMesh` に変換されます。このとき、`MeshFilter`、`MeshRenderer`、Quad Mesh、Material、Transform Scale などが変更される場合があります。
+- `Area Light` の `CutOff` については、必要に応じて Bakery 側で **`Match lightmapped to area light`** を実行してください。
+- 一括削除では、**Unity Light と同じ GameObject 上にある対応 Bakery コンポーネントのみ削除**します。
+
+---
+
+## ライセンス
+
+PolyForm Noncommercial 1.0.0
+
+Required Notice: Copyright (c) 2026 Wata23
