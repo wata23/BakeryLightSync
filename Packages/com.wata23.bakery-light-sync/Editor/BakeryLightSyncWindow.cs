@@ -1,3 +1,8 @@
+
+//License: PolyForm Noncommercial 1.0.0
+
+//Required Notice: Copyright(c) 2026 Wata23
+
 #if UNITY_EDITOR
 
 namespace Wata23.BakeryLightSync.Editor
