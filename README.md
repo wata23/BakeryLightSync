@@ -136,5 +136,9 @@ Tools > Bakery Light Sync
 ## ライセンス
 
 PolyForm Noncommercial 1.0.0
-
 Required Notice: Copyright (c) 2026 Wata23
+
+このツールはPolyForm Noncommercial 1.0.0にそのまま則っています。
+私的改造・再配布などは許されますが、商用利用は許されていません。
+またRequired Notice:～の一文を必ず引き継ぐ必要があります。
+その他詳しい内容についてはライセンス内容を確認してください。
