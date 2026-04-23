@@ -53,9 +53,9 @@ Tools > Bakery Light Sync
 
 1. GitHub の `Releases` から `.unitypackage` をダウンロードします。  
 
-```text
+
 [最新のReleaseはこちら](https://github.com/wata23/BakeryLightSync/releases/latest)
-```
+
 
 2. Unity で `.unitypackage` をインポートします。
 3. Unity を開き、メニューから以下を実行します。
