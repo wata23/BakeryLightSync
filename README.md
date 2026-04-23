@@ -37,11 +37,9 @@ Unity の `Light` コンポーネントを一覧表示し、対応する Bakery 
 ### VCC の VPM から導入する方法(推奨）
 
 1. VCC にこのパッケージの VPM リポジトリを追加します。  
-   例:
 
-```text
 [Add to VCC](https://wata23.github.io/wata23-packages/add-repo/)
-```
+
 
 2. VCC で対象プロジェクトを開きます。
 3. `Manage Project` から本ツールを追加します。
