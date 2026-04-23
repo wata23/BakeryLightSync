@@ -1,7 +1,6 @@
 Required Notice: Copyright (c) 2026 Wata23
 
 This package is licensed under PolyForm Noncommercial 1.0.0.
-License URL: https://polyformproject.org/licenses/noncommercial/1.0.0/
 
 # PolyForm Noncommercial License 1.0.0
 
