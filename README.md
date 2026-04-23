@@ -40,7 +40,7 @@ Unity の `Light` コンポーネントを一覧表示し、対応する Bakery 
    例:
 
 ```text
-<現在作成中につき、少しお待ちください>
+[Add to VCC](https://wata23.github.io/wata23-packages/add-repo/)
 ```
 
 2. VCC で対象プロジェクトを開きます。
@@ -54,10 +54,9 @@ Tools > Bakery Light Sync
 ### Release から Unity Package を導入する方法
 
 1. GitHub の `Releases` から `.unitypackage` をダウンロードします。  
-   例:
 
 ```text
-com.wata23.bakery-light-sync-0.1.0.unitypackage
+[最新のReleaseはこちら](https://github.com/wata23/BakeryLightSync/releases/latest)
 ```
 
 2. Unity で `.unitypackage` をインポートします。
@@ -73,7 +72,7 @@ Tools > Bakery Light Sync
 
 ### Light 一覧を確認する
 
-ウィンドウを開くと、現在開いている Scene 内の Unity `Light` が一覧表示されます。  
+ウィンドウを開くと、現在開いている Scene 内の Unity `Light`コンポーネントが一覧表示されます。  
 同じ GameObject に対応する Bakery コンポーネントが存在する場合、その直下に Bakery 側の行も表示されます。
 
 表示項目の例:
@@ -92,7 +91,7 @@ Tools > Bakery Light Sync
 
 ### Bakery コンポーネントを個別に追加 / 削除する
 
-各 Unity `Light` 行の左側にチェックボックスがあります。
+各 Unity `Light`コンポーネントの行の左側にチェックボックスがあります。
 
 - **ON** → 対応する Bakery コンポーネントを追加
 - **OFF** → 同じ GameObject 上の対応する Bakery コンポーネントを削除
@@ -106,10 +105,10 @@ Tools > Bakery Light Sync
 
 ### ライトモードを確認 / 変更する
 
-**リスト上のライトモードの項目では**、`Realtime / Mixed / Baked` の状態を確認できます。  
+**ライトモードの項目では**、`Realtime / Mixed / Baked` の状態を確認できます。  
 必要に応じて、リスト上から変更することもできます。
 
-### 設定を使う
+### 設定について
 
 右上の **設定** から、Realtime Light に Bakery コンポーネントを追加する際の挙動を設定できます。
 
@@ -129,7 +128,7 @@ Tools > Bakery Light Sync
 - パラメータをコピーする方法をとっているため、Bakery のバージョンによっては機能しない場合があります。
 - `Area Light` は `BakeryLightMesh` に変換されます。このとき、`MeshFilter`、`MeshRenderer`、Quad Mesh、Material、Transform Scale などが変更される場合があります。
 - `Area Light` の `CutOff` については、必要に応じて Bakery 側で **`Match lightmapped to area light`** を実行してください。
-- 一括削除では、**Unity Light と同じ GameObject 上にある対応 Bakery コンポーネントのみ削除**します。
+- 一括削除では、**Unity Light と同じ GameObject 上にある対応 Bakery コンポーネントのみ削除**します。各種Bakeryコンポーネントが単体で付いている場合は、このツールは反応しません。
 
 ---
 
@@ -139,6 +138,8 @@ PolyForm Noncommercial 1.0.0
 Required Notice: Copyright (c) 2026 Wata23
 
 このツールはPolyForm Noncommercial 1.0.0にそのまま則っています。
-私的改造・再配布などは許されますが、商用利用は許されていません。
+ダウンロードした時点でライセンスに同意したものとみなします。
+
+私的な目的の改造・再配布などは許されますが、商用利用は許されていません。
 またRequired Notice:～の一文を必ず引き継ぐ必要があります。
 その他詳しい内容についてはライセンス内容を確認してください。
