@@ -1,11 +1,13 @@
 {
   "name": "com.wata23.bakery-light-sync",
   "displayName": "BakeryLightSync",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "unity": "2022.3",
   "description": "Unity editor tools for BakeryLightSync.",
   "author": {
-    "name": "wata23"
+    "name": "wata23",
+    "email": "48621487+wata23@users.noreply.github.com"
   },
-  "license": "See LICENSE.md file"
+  "license": "PolyForm-Noncommercial-1.0.0",
+  "licensesUrl": "https://polyformproject.org/licenses/noncommercial/1.0.0/"
 }
