@@ -5,6 +5,8 @@ Unity の `Light` コンポーネントを一覧表示し、対応する Bakery 
 手動で Bakery 用コンポーネントを探して付けたり、設定を見比べたりする手間を減らすことを目的としています。  
 特に、**Bakery 導入後の Light セットアップ補助** と **Unity Light と Bakery Light の対応確認** をしやすくするためのツールです。
 
+![Thumbnail](Website/thumbnail.jpg)
+
 主な機能:
 
 - Scene 内の Light を一覧表示
